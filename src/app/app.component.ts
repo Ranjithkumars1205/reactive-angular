@@ -21,6 +21,7 @@ import { MessagesService } from "./messages/messages.service";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
   providers: [LoadingService, MessagesService],
+  // when we put service here, global instance can't access this service such as providedIn root service
 })
 
 // instance of LoadingService only available child component of app-root component. for eg: router-outlet component can able to access instance of loading service
