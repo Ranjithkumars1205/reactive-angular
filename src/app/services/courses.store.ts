@@ -26,6 +26,7 @@ export class CoursesStore {
   // this behaviourSubject has the particularity of remembering the last value that was emittedb
   private subject = new BehaviorSubject<Course[]>([]);
 
+  // this is the key for this store
   // here, we are derived this from the subject using that as observable
   course$: Observable<Course[]> = this.subject.asObservable();
 
@@ -98,7 +99,6 @@ export class CoursesStore {
       }),
       tap((courses) => this.subject.next(courses))
     );
-
     this.loadingService.showLoaderUntilCompleted(loadCourses$).subscribe();
   }
 }

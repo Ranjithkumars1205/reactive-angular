@@ -5,7 +5,7 @@ import { filter } from "rxjs/operators";
 // for this service, we are not going to be declaring this as a global singleton.
 @Injectable()
 export class MessagesService {
-  subject$ = new BehaviorSubject<string[]>([]);
+  private subject$ = new BehaviorSubject<string[]>([]);
   errors$: Observable<string[]> = this.subject$
     .asObservable()
     .pipe(filter((messages) => !!messages && messages.length > 0));
