@@ -20,7 +20,7 @@ import { MessagesService } from "./messages/messages.service";
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
-  providers: [LoadingService, MessagesService],
+  // providers: [LoadingService, MessagesService],
   // when we put service here, global instance can't access this service such as providedIn root service
 })
 
