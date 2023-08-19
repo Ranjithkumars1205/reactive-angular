@@ -1,11 +1,18 @@
+<!-- <ng-container *ngIf="(course$ | async) as course"> -->
+  <!-- <ng-container *ngIf="(lessons$ | async) as lessons"></ng-container> -->
+<!-- Above, we had to nested ngcontainer in order to consume all the observable from our components. -->
+<!-- Imagine, In a more complex component that has five, six, seven observables, we would get here seven nested
+ng-container tags, which looks really ugly and it's not very practical or maintainable.. Single data observable pattern is going to avoid nested ng-container and also it is going to help with initial
+delay in displaying data to the user while the screen starts!-->
+ <ng-container *ngIf="(data$ | async) as data">
 
   <div class="course">
 
-    <h2>{{course?.description}}</h2>
+    <h2>{{data.course?.description}}</h2>
 
-    <img class="course-thumbnail" [src]="course?.iconUrl">
+    <img class="course-thumbnail" [src]="data.course?.iconUrl" *ngIf="data.course?.iconUrl">
 
-    <table class="lessons-table mat-elevation-z7">
+    <table class="lessons-table mat-elevation-z7" *ngIf="data?.lessons?.length">
 
       <thead>
       <th>#</th>
@@ -13,7 +20,7 @@
       <th>Duration</th>
       </thead>
 
-      <tr class="lesson-row" *ngFor="let lesson of lessons">
+      <tr class="lesson-row" *ngFor="let lesson of data.lessons">
         <td class="seqno-cell">{{lesson.seqNo}}</td>
         <td class="description-cell">{{lesson.description}}</td>
         <td class="duration-cell">{{lesson.duration}}</td>
@@ -21,7 +28,8 @@
 
     </table>
 
-  </div>
+  </div></ng-container>
+
 
 
 

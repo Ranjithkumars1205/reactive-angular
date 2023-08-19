@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { LoadingService } from "./loading/loading.service";
 import { MessagesService } from "./messages/messages.service";
+import { AuthStore } from "./services/auth.store";
 
 // stateless means we getting data from backend (server side). not stored in here - this is one of the example we can say!
 // directly passing to the template using the async pipe (beginnerCourses$ | async) and it's not kept anywhere else in our application.
@@ -20,14 +21,17 @@ import { MessagesService } from "./messages/messages.service";
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
-  providers: [LoadingService, MessagesService],
+  // providers: [LoadingService, MessagesService],
+  // when we put service here, global instance can't access this service such as providedIn root service
 })
 
 // instance of LoadingService only available child component of app-root component. for eg: router-outlet component can able to access instance of loading service
 export class AppComponent implements OnInit {
-  constructor() {}
+  constructor(public auth: AuthStore) {}
 
   ngOnInit() {}
 
-  logout() {}
+  logout() {
+    this.auth.logout();
+  }
 }

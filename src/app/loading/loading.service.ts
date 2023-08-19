@@ -6,7 +6,6 @@ import { concatMap, finalize, tap } from "rxjs/operators";
 @Injectable()
 export class LoadingService {
   private loadingSubject = new BehaviorSubject(false);
-
   loading$: Observable<boolean> = this.loadingSubject.asObservable();
 
   constructor() {
